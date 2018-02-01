@@ -20,6 +20,6 @@ windows_package 'Microsoft Visual C++ 2005 Redistributable' do
 end
 
 windows_service 'jenkins' do
-action :enable, :start
+action [ :disable, :stop ]
 end
 
