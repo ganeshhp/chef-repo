@@ -1,9 +1,7 @@
 #
-# Author:: Seth Chisamore (<schisamo@chef.io>)
-# Cookbook:: windows
-# Recipe:: default
+# Author:: Adam Edwards (<adamed@chef.io>)
 #
-# Copyright:: 2011-2017, Chef Software, Inc.
+# Copyright:: 2014-2017, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +16,17 @@
 # limitations under the License.
 #
 
-Chef::Log.warn('The windows::default recipe has been deprecated. The gems previously installed in this recipe ship in the Chef MSI.')
+if RUBY_PLATFORM =~ /mswin|mingw32|windows/
+  require 'win32ole'
+
+  def execute_wmi_query(wmi_query)
+    wmi = ::WIN32OLE.connect('winmgmts://')
+    result = wmi.ExecQuery(wmi_query)
+    return nil unless result.each.count > 0
+    result
+  end
+
+  def wmi_object_property(wmi_object, wmi_property)
+    wmi_object.send(wmi_property)
+  end
+end

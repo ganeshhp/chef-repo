@@ -1,9 +1,9 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Cookbook:: windows
-# Recipe:: default
+# Attribute:: default
 #
-# Copyright:: 2011-2017, Chef Software, Inc.
+# Copyright:: 2011-2017, Chef Software, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-Chef::Log.warn('The windows::default recipe has been deprecated. The gems previously installed in this recipe ship in the Chef MSI.')
+default['windows']['rubyzipversion'] = nil
